@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const { truncate } = require('./User');
+
 
 class Post extends Model {}
 
@@ -14,12 +14,18 @@ Post.init(
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
         },
-        // comment column
-        comment: {
+        // content column
+        text_content: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1]
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
