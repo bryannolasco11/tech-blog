@@ -23,10 +23,31 @@ router.post('/', (req, res) => {
         });
 });
 
-router.put('/', (req, res) => {
-
+router.put('/:id', (req, res) => {
+    console.log(req.body);
+    Comment.update(
+        {
+            ...req.body
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(dbPostData => {
+        if (!dbPostData) {
+            res.status(404).json({ message: 'No post found with this id.'});
+            return;
+        }
+        res.json(dbPostData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
-// is this working?
+ 
 router.delete('/:id', (req, res) => {
     Comment.destroy({
         where: {
