@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
+const { User } = require('../../models');
 
 //GET /api/users
 router.get('/', (req, res) => {
@@ -53,10 +53,10 @@ router.post('/', (req, res) => {
                 res.json(dbUserData);
             })
         })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        // .catch(err => {
+        //     console.log(err);
+        //     res.status(500).json(err);
+        // });
 });
 
 router.post('/login', (req, res) => {
