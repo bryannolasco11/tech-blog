@@ -3,3 +3,28 @@
     <p class="card-text">{{post.text_content}}</p>
     <footer class="blockquote-footer">Post by {{post.user.username}} on {{post.created_at}}</footer>
 </div>
+
+<div class="comments">
+    Comments:
+    {{#each post.comments}}
+    <section>
+        <div>
+            {{user.username}} on {{created_at}}
+        </div>
+        <div>
+            {{comment_text}}
+        </div>
+    </section>
+    {{/each}}
+</div>
+
+<form class="comment-form">
+    <div>
+        <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+        <button type="submit">add comment</button>
+    </div>
+</form>
+
