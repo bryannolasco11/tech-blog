@@ -1,12 +1,13 @@
 <div class="card-body">
+    {{#each this}}
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{text_content}}</p>
-    <footer class="blockquote-footer">Post by {{user.username}} on {{created_at}}</footer>
+    
 </div>
 
 <div class="comments">
     Comments:
-    {{#each this}}
+    
     <section>
         <div>
             {{user.username}} on {{created_at}}
