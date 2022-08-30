@@ -67,7 +67,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     // expects {title: 'Taskmaster goes public!', text_content: 'Crazy that no one expected it.', user_id: 1}
-    console.log(req.body);
+    
     //console.log(req.session.user_id);
     Post.create({
         ...req.body

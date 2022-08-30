@@ -31,32 +31,18 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         // pass a single post object into the homepage template
+
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('homepage', { posts });
+        console.log(dbPostData[0]);
+        res.render('homepage', { 
+            posts, 
+            loggedIn: req.session.loggedIn 
+        });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-});
-
-router.get('/login', (req, res) =>{
-    console.log(req.session.loggedIn);
-    if(req.session.loggedIn){
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-});
-
-
-router.get('/signup', (req, res) => {
-    if(req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('signup');
 });
 
 router.get('/post/:id', (req, res) => {
@@ -91,18 +77,38 @@ router.get('/post/:id', (req, res) => {
             return;
         }
         //serielize the data
-        const post = dbPostData.get({plain: true});
+        const post = dbPostData.get({ plain: true });
 
         //pass the data to the template
         res.render('single-post', {
             post,
-            loggendIn: req.session.loggedIn
-        });
+            loggedIn: req.session.loggedIn
+          });
     })
     .catch(err=>{
         console.log(err);
         res.status(500).json(err);
     });
 });
+
+router.get('/login', (req, res) =>{
+    
+    if(req.session.loggedIn){
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+});
+
+
+router.get('/signup', (req, res) => {
+    if(req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('signup');
+});
+
 
 module.exports = router;

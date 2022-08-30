@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req.session.user_id);
+    
     if (req.session) {
     Comment.create({
         comment_text: req.body.comment_text,
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    console.log(req.body);
+    
     Comment.update(
         {
             ...req.body
