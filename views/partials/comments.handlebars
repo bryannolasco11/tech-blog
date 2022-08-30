@@ -1,5 +1,5 @@
 <div class="card-body">
-    {{#each this}}
+    
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{text_content}}</p>
     
@@ -7,7 +7,7 @@
 
 <div class="comments">
     Comments:
-    
+    {{#each this}}
     <section>
         <div>
             {{user.username}} on {{created_at}}
