@@ -67,10 +67,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     // expects {title: 'Taskmaster goes public!', text_content: 'Crazy that no one expected it.', user_id: 1}
-    
+    console.log(req.body),
     //console.log(req.session.user_id);
     Post.create({
-        ...req.body
+        title: req.body.title,
+        text_content: req.body.text_content,
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
@@ -81,7 +83,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Post.update(
-        {
+        {   
             ...req.body
         },
         {
