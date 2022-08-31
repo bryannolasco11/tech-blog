@@ -83,7 +83,7 @@ router.get('/comments/:id', withAuth, (req, res) => {
                 const post = dbCommentData.get({ plain: true });
 
                 res.render('edit-comment', {
-                    
+                    comment,
                     loggedIn: true
                 });
             } else {
