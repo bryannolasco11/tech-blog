@@ -4,16 +4,14 @@
   </h2>
   <form class="edit-comment-form">
     <div>
-      <label for="post-title" class="form-label">Title</label>
-      <input name="post-title" type="text" value="{{post.title}}" />
-      <label class="form-label" for="text_content">Content</label>
-      <input name="text_content" type="text" value="{{post.text_content}}"/>
+      <label class="form-label" for="comment_text">Content</label>
+      <input name="comment_text" type="text" value="{{comment.comment_text}}"/>
     </div>
     <div>
       
       <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
     </div>
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
+    <button type="submit">Save comment</button>
+    <button type="button" class="delete-comment-btn">Delete post</button>
   </form>
 </article>
