@@ -6,7 +6,8 @@
     <div>
       <label for="post-title" class="form-label">Title</label>
       <input name="post-title" type="text" value="{{post.title}}" />
-      <p>({{post.text_content}})</p>
+      <label class="form-label" for="text_content">Content</label>
+      <input name="text_content" type="text" value="{{post.text_content}}"/>
     </div>
     <div>
       
@@ -17,17 +18,6 @@
   </form>
 </article>
 
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-
-{{> comments post.comments}}
 
 <script src="/javascript/edit-post.js"></script>
 <script src="/javascript/delete-post.js"></script>
