@@ -16,7 +16,7 @@ router.get('/', withAuth, (req, res) => {
             'text_content',
             'created_at',
         ]
-       
+
     })
         .then(dbPostData => {
             // serialize data before passing to template
@@ -69,18 +69,32 @@ router.get('/edit/:id', withAuth, (req, res) => {
         });
 });
 
-router.get('/comments/:id', withAuth, (req, res) => {
-    Post.findByPk(req.params.id, {
-        attributes: [
-            'id',
-            'comment_text', 
-            'post_id', 
-            'user_id'
-        ],
+router.get('/editcomments/:id', withAuth, (req, res) => {
+    Comment.findByPk(req.params.id, {
+        // attributes: [
+        //     'id',
+        //     'comment_text',
+        //     'post_id',
+        //     'user_id'
+        // ],
+        // include: [
+        //     {
+        //         model: Comment,
+        //         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        //         include: {
+        //             model: User,
+        //             attributes: ['username']
+        //         }
+        //     },
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
         .then(dbCommentData => {
             if (dbCommentData) {
-                const post = dbCommentData.get({ plain: true });
+                const comment = dbCommentData.get({ plain: true });
 
                 res.render('edit-comment', {
                     comment,
