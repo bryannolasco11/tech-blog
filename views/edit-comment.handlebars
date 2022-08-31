@@ -1,0 +1,19 @@
+<article>
+  <h2>
+    Edit Comment
+  </h2>
+  <form class="edit-comment-form">
+    <div>
+      <label for="post-title" class="form-label">Title</label>
+      <input name="post-title" type="text" value="{{post.title}}" />
+      <label class="form-label" for="text_content">Content</label>
+      <input name="text_content" type="text" value="{{post.text_content}}"/>
+    </div>
+    <div>
+      
+      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
+    </div>
+    <button type="submit">Save post</button>
+    <button type="button" class="delete-post-btn">Delete post</button>
+  </form>
+</article>
