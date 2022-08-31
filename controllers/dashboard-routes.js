@@ -74,6 +74,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
 
 router.get('/editcomments/:id', withAuth, (req, res) => {
     Comment.findByPk(req.params.id, {
+        
     })
         .then(dbCommentData => {
             if (dbCommentData) {
@@ -93,8 +94,34 @@ router.get('/editcomments/:id', withAuth, (req, res) => {
 });
 
 
-router.get('/new', (req, res) => {
-    res.render('add-post');
+// router.get('/new', withAuth, (req, res) => {
+    
+//     res.render('add-post')
+// });
+
+router.get('/new', withAuth, (req, res) => {
+    Post.findAll({
+        where: {
+            // use the ID from the session
+            user_id: req.session.user_id
+        },
+        attributes: [
+            'id',
+            'title',
+            'text_content',
+            'created_at',
+        ]
+
+    })
+        .then(dbPostData => {
+            // serialize data before passing to template
+            const posts = dbPostData.map(post => post.get({ plain: true }));
+            res.render('add-post', { posts, loggedIn: true });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 

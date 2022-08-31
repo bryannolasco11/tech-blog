@@ -1,4 +1,5 @@
 # tech-blog
+https://github.com/bryannolasco11/tech-blog
 
 ## Installation
 npm install express-handlebars
