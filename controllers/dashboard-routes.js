@@ -75,6 +75,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
 router.get('/editcomments/:id', withAuth, (req, res) => {
     Comment.findByPk(req.params.id, {
         
+    
     })
         .then(dbCommentData => {
             if (dbCommentData) {
